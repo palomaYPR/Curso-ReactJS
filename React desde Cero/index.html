@@ -50,30 +50,54 @@
 
         return (
           //JSX renderizando
-          //renderizado condicional id 
+          //renderizado condicional id
           <picture className={pictureClassName}>
-            {
-              id ? (
-                <img
+            {id ? (
+              <img
                 onClick={() => {
-                setEnabled(!enabled);
-              }}
-              className={imgClassName}
-              src={src}
-            />
-              ) : <i>Sin imagen</i>
-            }
+                  setEnabled(!enabled);
+                }}
+                className={imgClassName}
+                src={src}
+              />
+            ) : (
+              <i>Sin imagen</i>
+            )}
             <strong>{enabled ? name : "Desactivado"}</strong>
           </picture>
         );
       };
 
+      function Contador() {
+        const [contadorValue, actualizarValue] = useState(7);
+        const [numeroVeces, actualizarVeces] = useState(0);
+
+        return (          
+          //<React.Fragment>
+          <div>
+            <span>{contadorValue}</span>
+            <button onClick={() => {
+              actualizarValue(contadorValue +1);
+              actualizarVeces(numeroVeces +1);
+            }}>Incrementar +</button>
+            <button onClick={() => {
+              actualizarValue(contadorValue -1);
+              actualizarVeces(numeroVeces +1);
+            }}>Decrementar -</button>
+
+            <p>Veces utilizados {numeroVeces}</p>
+          </div>
+          //</React.Fragment>
+        );
+      }
+
       ReactDOM.render(
         //JSX
         <div>
-          <Avatar size="small"/>
-          <Avatar id={26} name= "Elizabeth" size="small" />
+          <Avatar size="small" />
+          <Avatar id={26} name="Elizabeth" size="small" />
           <Avatar id={17} size="large" />
+          <Contador />
         </div>,
         $app
       );
