@@ -4,25 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="StyleSheet" href="style.css" type="text/css" media="screen">
-    <title>Introducción a React</title>    
+    <link rel="StyleSheet" href="style.css" type="text/css" media="screen" />
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    >
+      //React Core
+    </script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    >
+      //React para WEB
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js">
+      //JSX
+    </script>
+    <title>Introducción a React</title>
   </head>
   <body>
     <h1>Women in Tech</h1>
     <div id="app"></div>
-    <script>
+    <script type="text/babel">
       const $app = document.getElementById("app");
-      const Avatar = (params) => {
-        const src = `https://randomuser.me/api/portraits/women/${params.id}.jpg`;
-        return `<picture>
-          <img src="${src}" />
-          ${params.name}
-       </picture>
-        `;
+      const useState = React.useState;
+
+      const Avatar = (props) => {
+        const [enabled, setEnabled] = useState(true);
+
+        const src = `https://randomuser.me/api/portraits/women/${props.id}.jpg`;
+
+        let pictureClassName = "";
+        //alert(console.log(pictureClassName));        
+        if (props.size === "small") {
+          pictureClassName = "is-small";
+        } else if (props.size === "large") {
+          pictureClassName = "is-large";
+        }
+
+        const imgClassName = enabled ? "" : "disabled";
+
+        return (
+          //JSX renderizando
+          <picture className={pictureClassName}>
+            <img
+              onClick={() => {
+                setEnabled(!enabled);
+              }}
+              className={imgClassName}
+              src={src}
+            />
+            <em>{props.name}</em>
+          </picture>
+        );
       };
 
-      $app.innerHTML += Avatar({ id: 14, name: "Diane" });
-      $app.innerHTML += Avatar({ id: 17, name: "Elizabeth" });
+      ReactDOM.render(
+        //JSX
+        <div>
+          <Avatar id={26} name="Diane" size="small" />
+          <Avatar id={17} name="Elizabeth" />
+          <Avatar id={34} name="Megan" size="large" />
+        </div>,
+        $app
+      );
     </script>
   </body>
 </html>

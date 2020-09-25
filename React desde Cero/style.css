@@ -4,8 +4,17 @@ picture {
   text-align: center;
   width: 100px;
 }
+picture.is-small {
+  width: 50px;
+}
+picture.is-large {
+  width: 150px;
+}
 img {
   box-shadow: 0 0 15px #999;
   border-radius: 50%;
   width: 100px;
+}
+img.disabled {
+  opacity: 0.3;
 }
