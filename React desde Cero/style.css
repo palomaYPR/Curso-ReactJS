@@ -22,3 +22,15 @@ img {
 img.disabled {
   opacity: 0.3;
 }
+
+i {
+  align-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  min-height: 50px;
+  display: block;
+  width: 100%;
+}
